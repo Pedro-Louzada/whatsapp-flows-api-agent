@@ -16,7 +16,9 @@ layering and the crypto logic identical.
 
 ## 0. Ask before scaffolding
 
-Don't generate files from assumptions. Ask (a short back-and-forth, not a form):
+Don't generate files from assumptions. Ask (a short back-and-forth, not a
+form) for anything only the user can know; work out from project context
+anything you can derive yourself instead of adding it to the questions:
 
 1. **New API or adding a screen to an existing one?** Adding a screen skips
    most of this and only needs: a new entry in `ScreenAllowed`, a new use
@@ -34,14 +36,19 @@ Don't generate files from assumptions. Ask (a short back-and-forth, not a form):
    needed. If one screen genuinely needs a database, that's a deliberate
    exception — say so explicitly rather than defaulting to a repository
    layer nobody asked for.
-5. **Domain name.** The business domain this Flow belongs to, as a
-   kebab-case folder name — e.g. `registration-form`, `invoice-billing`,
-   `order-tracking`. Not the client's name and not "flows" — the thing the
-   Flow is actually about. Everything under `domain/application/` in the
-   layout below actually lives at `domain/<domain-name>/application/` (a
-   project can host more than one domain side by side; `application/` alone
-   would collide). Ask directly if it's not obvious from the conversation —
-   don't default to something generic like `core` or `main`.
+5. **Domain name — derive it, don't ask.** Everything under
+   `domain/application/` in the layout below actually lives at
+   `domain/<domain-name>/application/` (a project can host more than one
+   domain side by side; `application/` alone would collide). Work out
+   `<domain-name>` yourself, as a kebab-case folder name, from what's already
+   known about the project: the repo/project name, its README or package
+   description, the screens being built (what the Flow is actually *about*,
+   e.g. a registration flow → `registration-form`), or an existing
+   `domain/<name>/` folder if one already exists — reuse it rather than
+   inventing a second domain for the same project. Never the client's name,
+   never "flows", never a placeholder like `core` or `main`. State the name
+   you landed on and why in one line so it's easy to correct, but don't
+   phrase it as a question the user has to answer before you can continue.
 6. **Stack check.** Default to NestJS + vitest + zod, `@nestjs/config` for env
    validation, `@nestjs/axios` for the gateway HTTP client, and
    `@faker-js/faker` (devDependency) for test data — unless told otherwise.
