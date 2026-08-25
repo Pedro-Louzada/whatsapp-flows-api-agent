@@ -1,7 +1,7 @@
 import { Logger } from '@/core/interfaces/logger'
-import { FlowsScreensOrchestratorService } from '@/domain/application/navigation/flows-screens-orchestrator'
-import { DecryptionError } from '@/domain/application/errors/decryption-error'
-import { InvalidScreenNameError } from '@/domain/application/errors/invalid-screen-name-error'
+import { FlowsScreensOrchestratorService } from '@/domain/DOMAIN_NAME/application/navigation/flows-screens-orchestrator'
+import { DecryptionError } from '@/domain/DOMAIN_NAME/application/errors/decryption-error'
+import { InvalidScreenNameError } from '@/domain/DOMAIN_NAME/application/errors/invalid-screen-name-error'
 import { EnvService } from '@/infra/env/env.service'
 import {
   Controller,

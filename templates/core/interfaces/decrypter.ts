@@ -1,7 +1,7 @@
 import { Either } from '@/core/either'
-import { EncryptedBodyRequest } from '@/domain/application/navigation/encrypted-body'
-import { DecryptedBody } from '@/domain/application/navigation/decrypted-body'
-import { DecryptionError } from '@/domain/application/errors/decryption-error'
+import { EncryptedBodyRequest } from '@/domain/DOMAIN_NAME/application/navigation/encrypted-body'
+import { DecryptedBody } from '@/domain/DOMAIN_NAME/application/navigation/decrypted-body'
+import { DecryptionError } from '@/domain/DOMAIN_NAME/application/errors/decryption-error'
 
 export interface DecrypterResponse {
   decryptedBody: DecryptedBody

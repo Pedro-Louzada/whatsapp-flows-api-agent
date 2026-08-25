@@ -34,7 +34,15 @@ Don't generate files from assumptions. Ask (a short back-and-forth, not a form):
    needed. If one screen genuinely needs a database, that's a deliberate
    exception — say so explicitly rather than defaulting to a repository
    layer nobody asked for.
-5. **Stack check.** Default to NestJS + vitest + zod, `@nestjs/config` for env
+5. **Domain name.** The business domain this Flow belongs to, as a
+   kebab-case folder name — e.g. `registration-form`, `invoice-billing`,
+   `order-tracking`. Not the client's name and not "flows" — the thing the
+   Flow is actually about. Everything under `domain/application/` in the
+   layout below actually lives at `domain/<domain-name>/application/` (a
+   project can host more than one domain side by side; `application/` alone
+   would collide). Ask directly if it's not obvious from the conversation —
+   don't default to something generic like `core` or `main`.
+6. **Stack check.** Default to NestJS + vitest + zod, `@nestjs/config` for env
    validation, `@nestjs/axios` for the gateway HTTP client, and
    `@faker-js/faker` (devDependency) for test data — unless told otherwise.
 
@@ -49,7 +57,7 @@ src/
       logger.ts
       decrypter.ts               abstract class (Flow-shaped payload, but core-level like Logger — see step 2)
       encrypter.ts               abstract class (same reasoning)
-  domain/application/            framework-agnostic business rules
+  domain/<domain-name>/application/   framework-agnostic business rules
     navigation/
       decrypted-body.ts          ScreenAllowed union + DecryptedBody — the nav map, single source of truth
       screen-data.ts
@@ -89,8 +97,11 @@ src/
 The `templates/` folder next to this file mirrors this layout, with import
 paths already written for their **final** location (not the flat staging
 folder) — copy files in, rename placeholders (`SCREEN_ONE`, `ExampleGateway`,
-etc.) to match the answers from step 0, and remove commented-out example
-wiring once real use cases exist.
+`DOMAIN_NAME`, etc.) to match the answers from step 0, and remove
+commented-out example wiring once real use cases exist. `DOMAIN_NAME` in an
+import path (`@/domain/DOMAIN_NAME/application/...`) is a find-and-replace
+placeholder for the domain-name folder from step 0 — it is never left
+literally as `DOMAIN_NAME` in real code.
 
 **Path aliases — always, no long relative chains.** `tsconfig.json` must
 define:
@@ -173,14 +184,14 @@ flagged an explicit exception.
 
 **Gateways follow a two-tier pattern — one shared HTTP implementation, many
 thin domain wrappers:**
-- `domain/application/gateways/gateway.ts` — a generic `Gateway<TConfig>`
+- `domain/<domain-name>/application/gateways/gateway.ts` — a generic `Gateway<TConfig>`
   contract (`get`/`post`).
 - `infra/gateways/gateway.service.ts` — `GatewayService`, the **one** concrete
   implementation, wrapping `@nestjs/axios`'s `HttpService`. HTTP error
   handling (mapping axios errors to `GatewayRequestError`, with a `status`)
   lives here once, not per system.
 - One abstract class per external system (e.g. `AddressGateway`) in
-  `domain/application/gateways/<system>/`, with its concrete implementation
+  `domain/<domain-name>/application/gateways/<system>/`, with its concrete implementation
   in `infra/gateways/<system>/` — this one **injects `Gateway`** (bound to
   `GatewayService`) to make calls, and only translates the raw response into
   that system's domain shape. It never talks to axios directly or
@@ -191,7 +202,7 @@ thin domain wrappers:**
   pair for the full shape.
 
 Gateway failures surface as `GatewayRequestError`
-(`domain/application/gateways/errors/gateway-request-error.ts`, extends
+(`domain/<domain-name>/application/gateways/errors/gateway-request-error.ts`, extends
 `Error`, carries `status: number`, sets `this.name`). Whether a use case
 propagates that as `Left` or swallows it into a soft-fail (log it, still
 return `Right` with fallback `data` / a fallback `nextScreen`) is a per-screen

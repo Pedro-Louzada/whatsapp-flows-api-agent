@@ -1,6 +1,6 @@
 import { Either, left, right } from '@/core/either'
 import { faker } from '@faker-js/faker'
-// import { ExampleGateway, ExampleGatewayResponse } from '@/domain/application/gateways/example/example-gateway'
+// import { ExampleGateway, ExampleGatewayResponse } from '@/domain/DOMAIN_NAME/application/gateways/example/example-gateway'
 
 // One Faker<System>Gateway per gateway abstract, generating realistic data
 // with @faker-js/faker instead of hardcoded literals. Use these in use-case

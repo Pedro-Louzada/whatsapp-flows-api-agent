@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common'
 
 import { Encrypter } from '@/core/interfaces/encrypter'
 import { Either, right } from '@/core/either'
-import { ScreenDataResponse } from '@/domain/application/navigation/screen-data'
+import { ScreenDataResponse } from '@/domain/DOMAIN_NAME/application/navigation/screen-data'
 import { Logger } from '@/core/interfaces/logger'
 
 @Injectable()

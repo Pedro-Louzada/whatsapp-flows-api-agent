@@ -1,8 +1,8 @@
 import { Either, left, right } from '@/core/either'
 import { Decrypter, DecrypterResponse } from '@/core/interfaces/decrypter'
-import { DecryptionError } from '@/domain/application/errors/decryption-error'
-import { ScreenAllowed } from '@/domain/application/navigation/decrypted-body'
-import { EncryptedBodyRequest } from '@/domain/application/navigation/encrypted-body'
+import { DecryptionError } from '@/domain/DOMAIN_NAME/application/errors/decryption-error'
+import { ScreenAllowed } from '@/domain/DOMAIN_NAME/application/navigation/decrypted-body'
+import { EncryptedBodyRequest } from '@/domain/DOMAIN_NAME/application/navigation/encrypted-body'
 
 export class FakeDecrypter implements Decrypter {
   public shouldFail: boolean = false

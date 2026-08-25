@@ -2,8 +2,8 @@ import * as crypto from 'crypto'
 import { Injectable } from '@nestjs/common'
 
 import { Decrypter, DecrypterResponse } from '@/core/interfaces/decrypter'
-import { EncryptedBodyRequest } from '@/domain/application/navigation/encrypted-body'
-import { DecryptionError } from '@/domain/application/errors/decryption-error'
+import { EncryptedBodyRequest } from '@/domain/DOMAIN_NAME/application/navigation/encrypted-body'
+import { DecryptionError } from '@/domain/DOMAIN_NAME/application/errors/decryption-error'
 import { Either, left, right } from '@/core/either'
 import { Logger } from '@/core/interfaces/logger'
 

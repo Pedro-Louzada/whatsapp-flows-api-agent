@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
 import { HttpModule } from '@nestjs/axios'
-import { Gateway } from '@/domain/application/gateways/gateway'
+import { Gateway } from '@/domain/DOMAIN_NAME/application/gateways/gateway'
 import { GatewayService } from './gateway.service'
-import { ExampleGateway } from '@/domain/application/gateways/example/example-gateway'
+import { ExampleGateway } from '@/domain/DOMAIN_NAME/application/gateways/example/example-gateway'
 import { HttpExampleGateway } from './example/http-example-gateway'
 
 // Binds the single generic Gateway, plus one binding per external system's

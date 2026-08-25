@@ -5,8 +5,8 @@ import { firstValueFrom, map } from 'rxjs'
 
 import { left, right } from '@/core/either'
 import { Logger } from '@/core/interfaces/logger'
-import { Gateway, GatewayResponse, GetMethodParams, PostMethodParams } from '@/domain/application/gateways/gateway'
-import { GatewayRequestError } from '@/domain/application/gateways/errors/gateway-request-error'
+import { Gateway, GatewayResponse, GetMethodParams, PostMethodParams } from '@/domain/DOMAIN_NAME/application/gateways/gateway'
+import { GatewayRequestError } from '@/domain/DOMAIN_NAME/application/gateways/errors/gateway-request-error'
 
 // The ONE concrete Gateway implementation. Every per-system gateway
 // (AddressGateway, DocumentGateway, ...) injects this instead of talking to

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Either, left, right } from '@/core/either'
-import { Gateway } from '@/domain/application/gateways/gateway'
-import { ExampleGateway, ExampleGatewayResponse } from '@/domain/application/gateways/example/example-gateway'
+import { Gateway } from '@/domain/DOMAIN_NAME/application/gateways/gateway'
+import { ExampleGateway, ExampleGatewayResponse } from '@/domain/DOMAIN_NAME/application/gateways/example/example-gateway'
 import { EnvService } from '@/infra/env/env.service'
 
 // Concrete per-system gateway: injects the generic Gateway and translates its
